@@ -14,7 +14,7 @@ import static org.hamcrest.core.Is.is;
 
 public class ApiTests {
     int productCount;
-    ArrayList<String> orderCount;
+    int orderCount = 0;
     ArrayList<String> productName;
     ArrayList<String> promoName;
     Map<String, String> authorizationCookie;
@@ -103,9 +103,6 @@ public class ApiTests {
                             .body("basket.basketItems.offerId", hasItems(998))
                             .body("basket.basketItems.productCode", hasItems("apple-slices"))
                             .extract().response();
-            System.out.println(responce.asString());
-            productCount = responce.path("basket.itemCount");
-            System.out.println("Количество заказанного продукта = " + productCount);
         });
         step("Добавляем товар в корзину и сохраняем количество товара", () -> {
             Response responce =
@@ -120,9 +117,20 @@ public class ApiTests {
                             .body("basket.basketItems.offerId", hasItems(1001))
                             .body("basket.basketItems.productCode", hasItems("carrot-sticks"))
                             .extract().response();
-            System.out.println(responce.asString());
-            productCount = responce.path("basket.itemCount");
-            System.out.println("Количество заказанного продукта = " + productCount);
+        });
+        step("Добавляем товар в корзину и сохраняем количество товара", () -> {
+            Response responce =
+                    given()
+                            .contentType("application/json; charset=UTF-8")
+                            .cookies(authorizationCookie)
+                            .body("{\"offerId\":6626,\"quantity\":5,\"ingredientGroups\":[]}")
+                            .when()
+                            .put("https://mcdonalds.ru/api/basket/add")
+                            .then()
+                            .statusCode(200)
+                            .body("basket.basketItems.offerId", hasItems(6626))
+                            .body("basket.basketItems.productCode", hasItems("applesauce-agusha"))
+                            .extract().response();
         });
         step("Подтверждаем, что в корзине добавлен наш товар", () -> {
             Response responce =
@@ -136,8 +144,13 @@ public class ApiTests {
                             .body("order.basket.items.offerId", hasItems(998, 1001))
                             .body("order.basket.items.productCode", hasItems("apple-slices", "carrot-sticks"))
                             .extract().response();
-            System.out.println(responce.asString());
-            orderCount = responce.path("order.basket.items.quantity");
+            JsonPath jsonPath = new JsonPath(responce.asString());
+            int itemsSize = jsonPath.getInt("order.basket.items.size()");
+            System.out.println("Количество позиций = " + itemsSize);
+            for (int orderId = 0; orderId < itemsSize; orderId++) {
+                int quantity = jsonPath.getInt("order.basket.items[" + orderId + "].quantity");
+                orderCount = orderCount + quantity;
+            }
             System.out.println("Количество продуктов в корзине = " + orderCount);
         });
         step("Удаляем весь товар из корзины", () -> {
@@ -152,10 +165,9 @@ public class ApiTests {
                             .body("message", is("Корзина очищена"))
                             .body("success", is(true))
                             .extract().response();
-            System.out.println((String) responce.path("message"));
+            System.out.println("Сообщение после удаления всех продуктов: " + (String) responce.path("message"));
         });
     }
-
 
     @Test
     void getInformationAboutCaesarRoll() {
@@ -170,7 +182,6 @@ public class ApiTests {
                             .body("product.code", is("caesar-roll"))
                             .body("product.category.alias", is("rolls"))
                             .extract().response();
-            System.out.println(responce.asString());
             System.out.println("Название: " + (String) responce.path("product.name"));
             System.out.println("Категория: " + (String) responce.path("product.category.alias"));
             System.out.println("Состав: ");
@@ -192,7 +203,6 @@ public class ApiTests {
                             .then()
                             .statusCode(200)
                             .extract().response();
-            System.out.println(responce.asString());
             promoName = responce.path("items.name");
             for (int i = 0; i < promoName.size(); i++) {
                 System.out.println("Название: " + promoName.get(i) + " ");
