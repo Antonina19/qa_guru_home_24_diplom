@@ -1,7 +1,16 @@
 package tests;
 
+import allure.Layer;
+import allure.Lead;
+import allure.Microservice;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,6 +21,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.core.Is.is;
 
+@Layer("rest")
+@Lead("qa-lead")
+@Owner("puliavinaav")
+@Feature("User")
 public class ApiTests {
     int productCount;
     int orderCount = 0;
@@ -21,6 +34,11 @@ public class ApiTests {
 
 
     @Test
+    @Story("Отображение товара в корзине")
+    @Microservice("Billing")
+    @Tags({@Tag("api"), @Tag("regress")})
+    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @DisplayName("Проверяем, что добавленный товар отображается в корзине")
     void addProductInBasket() {
         step("Определяем адресс и получаем куки", () -> {
             authorizationCookie =
@@ -71,6 +89,11 @@ public class ApiTests {
     }
 
     @Test
+    @Story("Удаление товаров из корзины")
+    @Microservice("Billing")
+    @Tags({@Tag("api"), @Tag("regress")})
+    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @DisplayName("Проверяем, что добавленный товар удаляется из корзины")
     void deleteAllProductFromBasket() {
         step("Определяем адрес и получаем куки", () -> {
             authorizationCookie =
@@ -170,6 +193,11 @@ public class ApiTests {
     }
 
     @Test
+    @Story("Получаем информацию о продукте")
+    @Microservice("Billing")
+    @Tags({@Tag("api"), @Tag("regress")})
+    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @DisplayName("Получаем информацию о продукте 'Цезарь-ролл' и выводим в консоль его состав")
     void getInformationAboutCaesarRoll() {
         step("Получение информации о продукте Цезарь-ролл", () -> {
             Response responce =
@@ -193,6 +221,11 @@ public class ApiTests {
     }
 
     @Test
+    @Story("Получаем информацию о промо")
+    @Microservice("Billing")
+    @Tags({@Tag("api"), @Tag("regress")})
+    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @DisplayName("Получаем информацию и выводим в консоль названия промо-акций")
     void getInformationAboutPromo() {
         step("Получение информации о промо", () -> {
             Response responce =
@@ -211,6 +244,11 @@ public class ApiTests {
     }
 
     @Test
+    @Story("Получаем информацию о бургерах")
+    @Microservice("Billing")
+    @Tags({@Tag("api"), @Tag("regress")})
+    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @DisplayName("Получаем информацию о бургерах и их цене")
     void getInformationAboutSandwiches() {
         step("Получение информации о бургерах", () -> {
             Response responce =
