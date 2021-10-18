@@ -25,7 +25,7 @@ import static org.hamcrest.core.Is.is;
 @Lead("qa-lead")
 @Owner("puliavinaav")
 @Feature("User")
-public class ApiTests {
+public class ApiTests extends TestBase {
     int productCount;
     int orderCount = 0;
     ArrayList<String> productName;
