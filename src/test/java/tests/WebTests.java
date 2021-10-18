@@ -65,7 +65,7 @@ public class WebTests extends TestBase {
 
     @Test
     @Owner("antonina")
-    @Story("Открыетие информации о продукте")
+    @Story("Открытие информации о продукте")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Открытие окна информации о продукте")
