@@ -1,7 +1,6 @@
 package tests;
 
-import allure.Microservice;
-import com.codeborne.selenide.Condition;
+import allure.Layer;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
@@ -19,21 +18,17 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Layer("web")
 public class WebTests extends TestBase {
     @Test
     @Owner("antonina")
     @Story("Проверка корзины")
-    @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Проверка, что по-умолчанию корзина пустая")
     void emptyBasket() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
             open("https://mcdonalds.ru/");
-        });
-        step("Отклонение уведомнений и выбор города по-умолчанию", () -> {
-            $(".confirm-push-notifications__reject").click();
-            $(".el-button").shouldHave(text("Да, верно")).click();
         });
         step("Наведение на кнопку корзины", () -> {
             $(".mini-cart_empty").hover();
@@ -50,7 +45,6 @@ public class WebTests extends TestBase {
     @ParameterizedTest
     @Owner("antonina")
     @Story("Отрытие страниц меню")
-    @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Проверка, что открываются страницы меню")
@@ -58,9 +52,8 @@ public class WebTests extends TestBase {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
             open("https://mcdonalds.ru/");
         });
-//        $(".confirm-push-notifications__reject").click();
-//        $(".el-button").shouldHave(Condition.text("Да, верно")).click();
         step("Кликаем по пункту меню" + textLink, () -> {
+            $(".delivery").scrollTo();
             $(By.linkText(textLink)).click();
         });
         step("Проверяем, что открытая страница имеет title - " + expectedTitle + " , и head - " + textHead, () -> {
@@ -73,17 +66,12 @@ public class WebTests extends TestBase {
     @Test
     @Owner("antonina")
     @Story("Открыетие информации о продукте")
-    @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Открытие окна информации о продукте")
     void openInfoAboutProduct() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
             open("https://mcdonalds.ru/");
-        });
-        step("Отклонение уведомнений и выбор города по-умолчанию", () -> {
-            $(".confirm-push-notifications__reject").click();
-            $(".el-button").shouldHave(Condition.text("Да, верно")).click();
         });
         step("Переключение на вкладку 'Картофель и стартеры'", () -> {
             $(".menu-categories-outer").scrollTo();
@@ -106,17 +94,12 @@ public class WebTests extends TestBase {
     @Test
     @Owner("antonina")
     @Story("Страница 'Франчайзинг'")
-    @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Проверка, что открывается страница 'Франчайзинг'")
     void openPageFranchising() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
             open("https://mcdonalds.ru/");
-        });
-        step("Отклонение уведомнений и выбор города по-умолчанию", () -> {
-            $(".confirm-push-notifications__reject").click();
-            $(".el-button").shouldHave(Condition.text("Да, верно")).click();
         });
         step("Кликаем по ссылке 'Франчайзинг'", () -> {
             $(By.linkText("Франчайзинг")).click();
@@ -139,7 +122,6 @@ public class WebTests extends TestBase {
     @ParameterizedTest
     @Owner("antonina")
     @Story("Страница 'Информация о компании'")
-    @Microservice("Repository")
     @Tags({@Tag("web"), @Tag("regress")})
     //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
     @DisplayName("Проверка, информации о руководстве компании")
@@ -147,10 +129,6 @@ public class WebTests extends TestBase {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
             open("https://mcdonalds.ru/");
         });
-//        step("Отклонение уведомнений и выбор города по-умолчанию", () -> {
-//            $(".confirm-push-notifications__reject").click();
-//            $(".el-button").shouldHave(Condition.text("Да, верно")).click();
-//        });
         step("Кликаем по ссылке 'Макдоналдс в России'", () -> {
             $(By.linkText("Макдоналдс в России")).click();
         });

@@ -2,8 +2,6 @@ package tests;
 
 import allure.Layer;
 import allure.Lead;
-import allure.Microservice;
-import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.restassured.path.json.JsonPath;
@@ -24,8 +22,7 @@ import static org.hamcrest.core.Is.is;
 @Layer("rest")
 @Lead("qa-lead")
 @Owner("puliavinaav")
-@Feature("User")
-public class ApiTests extends TestBase {
+public class ApiTests {
     int productCount;
     int orderCount = 0;
     ArrayList<String> productName;
@@ -35,7 +32,6 @@ public class ApiTests extends TestBase {
 
     @Test
     @Story("Отображение товара в корзине")
-    @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("regress")})
     // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
     @DisplayName("Проверяем, что добавленный товар отображается в корзине")
@@ -90,7 +86,6 @@ public class ApiTests extends TestBase {
 
     @Test
     @Story("Удаление товаров из корзины")
-    @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("regress")})
     // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
     @DisplayName("Проверяем, что добавленный товар удаляется из корзины")
@@ -194,7 +189,6 @@ public class ApiTests extends TestBase {
 
     @Test
     @Story("Получаем информацию о продукте")
-    @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("regress")})
     // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
     @DisplayName("Получаем информацию о продукте 'Цезарь-ролл' и выводим в консоль его состав")
@@ -222,7 +216,6 @@ public class ApiTests extends TestBase {
 
     @Test
     @Story("Получаем информацию о промо")
-    @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("regress")})
     // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
     @DisplayName("Получаем информацию и выводим в консоль названия промо-акций")
@@ -245,7 +238,6 @@ public class ApiTests extends TestBase {
 
     @Test
     @Story("Получаем информацию о бургерах")
-    @Microservice("Billing")
     @Tags({@Tag("api"), @Tag("regress")})
     // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
     @DisplayName("Получаем информацию о бургерах и их цене")
