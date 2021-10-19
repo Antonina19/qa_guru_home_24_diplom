@@ -1,5 +1,7 @@
 package tests;
 
+import allure.JiraIssue;
+import allure.JiraIssues;
 import allure.Layer;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -24,7 +26,7 @@ public class WebTests extends TestBase {
     @Owner("antonina")
     @Story("Проверка корзины")
     @Tags({@Tag("web"), @Tag("regress")})
-    //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверка, что по-умолчанию корзина пустая")
     void emptyBasket() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
@@ -46,7 +48,7 @@ public class WebTests extends TestBase {
     @Owner("antonina")
     @Story("Отрытие страниц меню")
     @Tags({@Tag("web"), @Tag("regress")})
-    //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверка, что открываются страницы меню")
     void openPageMenu(String textLink, String textHead, String expectedTitle) {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
@@ -67,7 +69,7 @@ public class WebTests extends TestBase {
     @Owner("antonina")
     @Story("Открытие информации о продукте")
     @Tags({@Tag("web"), @Tag("regress")})
-    //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Открытие окна информации о продукте")
     void openInfoAboutProduct() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
@@ -95,7 +97,7 @@ public class WebTests extends TestBase {
     @Owner("antonina")
     @Story("Страница 'Франчайзинг'")
     @Tags({@Tag("web"), @Tag("regress")})
-    //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверка, что открывается страница 'Франчайзинг'")
     void openPageFranchising() {
         step("Открытие страницы 'mcdonalds.ru'", () -> {
@@ -123,7 +125,7 @@ public class WebTests extends TestBase {
     @Owner("antonina")
     @Story("Страница 'Информация о компании'")
     @Tags({@Tag("web"), @Tag("regress")})
-    //@JiraIssues({@JiraIssue("HOMEWORK-238")}) добавить
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверка, информации о руководстве компании")
     void openPageAboutCompanyManagement(int n, String name, String position) {
         step("Открытие страницы 'mcdonalds.ru'", () -> {

@@ -35,12 +35,12 @@ dependencies {
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "org.aeonbits.owner:owner:1.0.12",
             "org.assertj:assertj-core:3.19.0",
-            "io.rest-assured:rest-assured:4.3.1",
             "org.junit.jupiter:junit-jupiter:$junitVersion")
     testRuntimeOnly(
             "org.slf4j:slf4j-simple:1.7.29",
             "org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
+
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

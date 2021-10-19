@@ -1,5 +1,7 @@
 package tests;
 
+import allure.JiraIssue;
+import allure.JiraIssues;
 import allure.Layer;
 import allure.Lead;
 import io.qameta.allure.Owner;
@@ -33,7 +35,7 @@ public class ApiTests {
     @Test
     @Story("Отображение товара в корзине")
     @Tags({@Tag("api"), @Tag("regress")})
-    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверяем, что добавленный товар отображается в корзине")
     void addProductInBasket() {
         step("Определяем адресс и получаем куки", () -> {
@@ -87,7 +89,7 @@ public class ApiTests {
     @Test
     @Story("Удаление товаров из корзины")
     @Tags({@Tag("api"), @Tag("regress")})
-    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверяем, что добавленный товар удаляется из корзины")
     void deleteAllProductFromBasket() {
         step("Определяем адрес и получаем куки", () -> {
@@ -190,7 +192,7 @@ public class ApiTests {
     @Test
     @Story("Получаем информацию о продукте")
     @Tags({@Tag("api"), @Tag("regress")})
-    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Получаем информацию о продукте 'Цезарь-ролл' и выводим в консоль его состав")
     void getInformationAboutCaesarRoll() {
         step("Получение информации о продукте Цезарь-ролл", () -> {
@@ -217,7 +219,7 @@ public class ApiTests {
     @Test
     @Story("Получаем информацию о промо")
     @Tags({@Tag("api"), @Tag("regress")})
-    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Получаем информацию и выводим в консоль названия промо-акций")
     void getInformationAboutPromo() {
         step("Получение информации о промо", () -> {
@@ -239,7 +241,7 @@ public class ApiTests {
     @Test
     @Story("Получаем информацию о бургерах")
     @Tags({@Tag("api"), @Tag("regress")})
-    // @JiraIssues({@JiraIssue("HOMEWORK-238")}) - создать задачу
+    @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Получаем информацию о бургерах и их цене")
     void getInformationAboutSandwiches() {
         step("Получение информации о бургерах", () -> {
