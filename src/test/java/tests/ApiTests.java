@@ -1,9 +1,9 @@
 package tests;
 
-import allure.JiraIssue;
-import allure.JiraIssues;
-import allure.Layer;
-import allure.Lead;
+import annotations.JiraIssue;
+import annotations.JiraIssues;
+import annotations.Layer;
+import annotations.Lead;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.restassured.path.json.JsonPath;
@@ -21,7 +21,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.core.Is.is;
 
-@Layer("rest")
+@Layer("API tests")
 @Lead("qa-lead")
 @Owner("puliavinaav")
 public class ApiTests {

@@ -1,8 +1,8 @@
 package tests;
 
-import allure.JiraIssue;
-import allure.JiraIssues;
-import allure.Layer;
+import annotations.JiraIssue;
+import annotations.JiraIssues;
+import annotations.Layer;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Layer("web")
+@Layer("UI tests")
 public class WebTests extends TestBase {
     @Test
     @Owner("antonina")

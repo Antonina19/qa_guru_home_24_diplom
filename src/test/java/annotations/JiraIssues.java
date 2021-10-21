@@ -1,4 +1,4 @@
-package allure;
+package annotations;
 
 import java.lang.annotation.*;
 

@@ -53,7 +53,7 @@ gradle clean -DremoteDriverUrl=https://user1:1234@selenoid.autotests.cloud/wd/hu
 Serve report:
 
 ```bash
-allure serve build/allure-results
+annotations serve build/annotations-results
 ```
 
 ### Оповещение о результатах прохождения тестов через бот в телеграмме
