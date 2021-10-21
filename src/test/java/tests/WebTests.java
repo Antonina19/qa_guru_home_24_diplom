@@ -40,11 +40,12 @@ public class WebTests extends TestBase {
         });
     }
 
+    @ParameterizedTest
     @CsvSource({
             "Меню Макдоналдс,Меню,Меню Макдоналдс и МакКафе в России",
             "Меню МакКафе,Меню,Меню МакКафе в России"
     })
-    @ParameterizedTest
+//    @ParameterizedTest
     @Owner("antonina")
     @Story("Отрытие страниц меню")
     @Tags({@Tag("web"), @Tag("regress")})
@@ -111,6 +112,7 @@ public class WebTests extends TestBase {
         });
     }
 
+    @ParameterizedTest
     @CsvSource({
             "0,Марк Карена,Генеральный директор «Макдоналдс» в России",
             "1,Радомир Глащак,Вице-президент по доставке «Макдоналдс» в России",
@@ -121,7 +123,7 @@ public class WebTests extends TestBase {
             "6,Екатерина Серебреникова,Вице-президент по развитию людских ресурсов и обучению «Макдоналдс» в России",
             "7,Антон Чванов,Руководитель Финансового Департамента «Макдоналдс» в России"
     })
-    @ParameterizedTest
+//    @ParameterizedTest
     @Owner("antonina")
     @Story("Страница 'Информация о компании'")
     @Tags({@Tag("web"), @Tag("regress")})
