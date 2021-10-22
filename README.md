@@ -24,7 +24,7 @@
 
 ### Пример прохождения тестов в Allure TestOps
 
-![Allure TestOps](./img/Allure_Reports.png)
+![Allure Reports](./img/Allure_Reports.png)
 
 ### Используемые параметры по умолчанию
 
@@ -36,7 +36,9 @@
 * videoStorage (url address where you should get video)
 * threads (number of threads)
 
-![Allure TestOps](./img/Jenkins.png)
+![Jenkins](./img/Jenkins.png)
+
+#### Посмотреть сборки в Jenkins можно [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
 
 Run tests with filled remote.properties:
 
@@ -56,24 +58,40 @@ Serve report:
 annotations serve build/annotations-results
 ```
 
-### Оповещение о результатах прохождения тестов через бот в телеграмме
-
-![Allure TestOps](img/Telegram.png)
-
-#### Перейти в телеграмм канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
-
 ### Анализ результатов в Jenkins через Allure Reports
 
-![Allure TestOps](./img/Jenkins_Allure_Reports.png)
+![Jenkins_Allure_Reports](./img/Jenkins_Allure_Reports.png)
 
-#### Посмотреть сборки в Jenkins можно [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
+### Результаты запусков Launches в Allure Reports
+
+![Allure_Launches](./img/Allure_Launches.png)
 
 ### Анализ результатов в Allure TestOps
 
-![Allure TestOps](./img/Allure_TestOps_Results.png)
+![Allure TestOps_Results](./img/Allure_TestOps_Results.png)
 
-### Интерграция с Jira
+### Основной Dashboards
+
+![Allure Dashboards](./img/Allure_Dashboards.png)
+
+### Dashboards по разным типам тестов
+
+![Allure Dashboards_Automation](./img/Allure_Dashboards_Automation.png)
+
+### Dashboards по команде
+
+![Allure Dashboards_Team](./img/Allure_Dashboards_Team.png)
+
+### Интеграция с Jira
+
+![Jira](./img/Jira.png)
+
+### Оповещение о результатах прохождения тестов через бот в телеграмме
+
+![Telegram](img/Telegram.png)
+
+#### Перейти в телеграмм канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
 
 ### Пример прохождения тестов можно посмотреть на видео
 
-![Allure TestOps](./img/video.gif)
+![video](./img/video.gif)
