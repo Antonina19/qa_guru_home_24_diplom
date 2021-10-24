@@ -72,7 +72,7 @@ annotations serve build/annotations-results
 
 ### Основной Dashboards
 
-![Allure Dashboards](./img/Allure_Dashboards.png)
+![Allure Dashboards](img/Allure_Dashboards.png)
 
 ### Dashboards по разным типам тестов
 
