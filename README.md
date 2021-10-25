@@ -1,5 +1,15 @@
 # Автотесты на страницу https://mcdonalds.ru/
 
+![Intelij_IDEA](img/icons/Intelij_IDEA.png)![Java](img/icons/Java.png)![Selenide](img/icons/Selenide.png)![Selenoid](img/icons/Selenoid.png)![Gradle](img/icons/Gradle.png)![JUnit5](img/icons/JUnit5.png)![Allure Report](img/icons/Allure_Report.png)![AllureTestOps](img/icons/AllureTestOps.png)![Github](img/icons/Github.png)![Jenkins](img/icons/Jenkins.png)![Rest-Assured](img/icons/Rest-Assured.png)![Telegram](img/icons/Telegram.png)![Jira](img/icons/Jira.png)
+
+##### Посмотреть сборки в Jenkins можно [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
+
+##### Посмотреть проект в Allure TestOps можно [по ссылке](https://allure.autotests.cloud/project/564/dashboards)
+
+##### Перейти в телеграмм канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
+
+##### Перейти в Jira можно [по ссылке](https://jira.autotests.cloud/browse/HOMEWORK-256)
+
 ### Реализованы проверки:
 
 **UI**
@@ -37,8 +47,6 @@
 * threads (number of threads)
 
 ![Jenkins](./img/Jenkins.png)
-
-#### Посмотреть сборки в Jenkins можно [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
 
 Run tests with filled remote.properties:
 
@@ -89,8 +97,6 @@ annotations serve build/annotations-results
 ### Оповещение о результатах прохождения тестов через бот в телеграмме
 
 ![Telegram](img/Telegram.png)
-
-#### Перейти в телеграмм канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
 
 ### Пример прохождения тестов можно посмотреть на видео
 
