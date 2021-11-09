@@ -2,14 +2,6 @@
 
 ![Intelij_IDEA](img/icons/Intelij_IDEA.png)![Java](img/icons/Java.png)![Selenide](img/icons/Selenide.png)![Selenoid](img/icons/Selenoid.png)![Gradle](img/icons/Gradle.png)![JUnit5](img/icons/JUnit5.png)![Allure Report](img/icons/Allure_Report.png)![AllureTestOps](img/icons/AllureTestOps.png)![Github](img/icons/Github.png)![Jenkins](img/icons/Jenkins.png)![Rest-Assured](img/icons/Rest-Assured.png)![Telegram](img/icons/Telegram.png)![Jira](img/icons/Jira.png)
 
-##### Посмотреть сборки в Jenkins можно [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
-
-##### Посмотреть проект в Allure TestOps можно [по ссылке](https://allure.autotests.cloud/project/564/dashboards)
-
-##### Перейти в телеграмм канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
-
-##### Перейти в Jira можно [по ссылке](https://jira.autotests.cloud/browse/HOMEWORK-256)
-
 ### Реализованы проверки:
 
 **UI**
@@ -28,13 +20,9 @@
 * Получаем информацию о названии промо-акций
 * Получаем информацию о бургерах и их цене
 
-### Пример списка тестов в Allure TestOps
+### Для запусков автотестов используется Jenkins.
 
-![Allure TestOps](./img/Allure_TestOps.png)
-
-### Пример прохождения тестов в Allure TestOps
-
-![Allure Reports](./img/Allure_Reports.png)
+##### Примеры готовых сборок можно посмотреть [по ссылке](https://jenkins.autotests.cloud/job/07-antonina1901-mcdonalds/)
 
 ### Используемые параметры по умолчанию
 
@@ -63,14 +51,26 @@ gradle clean -DremoteDriverUrl=https://user1:1234@selenoid.autotests.cloud/wd/hu
 Serve report:
 
 ```bash
-annotations serve build/annotations-results
+allure serve build/allure-results
 ```
 
 ### Анализ результатов в Jenkins через Allure Reports
 
 ![Jenkins_Allure_Reports](./img/Jenkins_Allure_Reports.png)
 
-### Результаты запусков Launches в Allure Reports
+### Для отображения результатов сборок используется Allure TestOps.
+
+##### Примеры запусков и их результаты можно посмотреть [по ссылке](https://allure.autotests.cloud/project/564/dashboards)
+
+### Пример списка тестов в Allure TestOps
+
+![Allure TestOps](./img/Allure_TestOps.png)
+
+### Пример прохождения тестов в Allure TestOps
+
+![Allure Reports](./img/Allure_Reports.png)
+
+### Результаты запусков Launches в Allure TestOps
 
 ![Allure_Launches](./img/Allure_Launches.png)
 
@@ -90,11 +90,15 @@ annotations serve build/annotations-results
 
 ![Allure Dashboards_Team](./img/Allure_Dashboards_Team.png)
 
-### Интеграция с Jira
+### Добавлена интеграция с Jira, где можно посмотреть запускаемые кейсы и их результаты.
+
+##### Перейти в Jira можно [по ссылке](https://jira.autotests.cloud/browse/HOMEWORK-256)
 
 ![Jira](./img/Jira.png)
 
-### Оповещение о результатах прохождения тестов через бот в телеграмме
+### После прохождения тестов в telegram канал приходит оповещение с результами.
+
+##### Перейти в telegram канал можно [по ссылке](https://t.me/joinchat/sMZ0AnmoWmVhNDVi)
 
 ![Telegram](img/Telegram.png)
 
