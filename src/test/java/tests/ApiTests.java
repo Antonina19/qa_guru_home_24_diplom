@@ -19,6 +19,7 @@ import java.util.Map;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 
 @Layer("API tests")
@@ -57,7 +58,7 @@ public class ApiTests {
                             .cookies();
         });
         step("Добавляем товар в корзину и сохраняем количество товара", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
@@ -69,7 +70,7 @@ public class ApiTests {
                             .body("basket.basketItems.offerId", hasItems(910))
                             .body("basket.basketItems.productCode", hasItems("mcflurry-delux-caramel-chocolate"))
                             .extract().response();
-            productCount = responce.path("basket.itemCount");
+            productCount = response.path("basket.itemCount");
         });
         step("Подтверждаем, что в корзине добавлен наш товар", () -> {
             given()
@@ -111,7 +112,7 @@ public class ApiTests {
                             .cookies();
         });
         step("Добавляем товар в корзину и сохраняем количество товара", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
@@ -139,7 +140,7 @@ public class ApiTests {
                             .extract().response();
         });
         step("Добавляем товар в корзину и сохраняем количество товара", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
@@ -153,7 +154,7 @@ public class ApiTests {
                             .extract().response();
         });
         step("Подтверждаем, что в корзине добавлен наш товар", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
@@ -164,7 +165,7 @@ public class ApiTests {
                             .body("order.basket.items.offerId", hasItems(998, 1001))
                             .body("order.basket.items.productCode", hasItems("apple-slices", "carrot-sticks"))
                             .extract().response();
-            JsonPath jsonPath = new JsonPath(responce.asString());
+            JsonPath jsonPath = new JsonPath(response.asString());
             int itemsSize = jsonPath.getInt("order.basket.items.size()");
             System.out.println("Количество позиций = " + itemsSize);
             for (int orderId = 0; orderId < itemsSize; orderId++) {
@@ -174,7 +175,7 @@ public class ApiTests {
             System.out.println("Количество продуктов в корзине = " + orderCount);
         });
         step("Удаляем весь товар из корзины", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
@@ -185,7 +186,7 @@ public class ApiTests {
                             .body("message", is("Корзина очищена"))
                             .body("success", is(true))
                             .extract().response();
-            System.out.println("Сообщение после удаления всех продуктов: " + (String) responce.path("message"));
+            System.out.println("Сообщение после удаления всех продуктов: " + (String) response.path("message"));
         });
     }
 
@@ -196,7 +197,7 @@ public class ApiTests {
     @DisplayName("Получаем информацию о продукте 'Цезарь-ролл' и выводим в консоль его состав")
     void getInformationAboutCaesarRoll() {
         step("Получение информации о продукте Цезарь-ролл", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .when()
@@ -206,10 +207,10 @@ public class ApiTests {
                             .body("product.code", is("caesar-roll"))
                             .body("product.category.alias", is("rolls"))
                             .extract().response();
-            System.out.println("Название: " + (String) responce.path("product.name"));
-            System.out.println("Категория: " + (String) responce.path("product.category.alias"));
+            System.out.println("Название: " + (String) response.path("product.name"));
+            System.out.println("Категория: " + (String) response.path("product.category.alias"));
             System.out.println("Состав: ");
-            productName = responce.path("product.composition.name");
+            productName = response.path("product.composition.name");
             for (int i = 0; i < productName.size(); i++) {
                 System.out.println("- " + productName.get(i) + " ");
             }
@@ -223,15 +224,19 @@ public class ApiTests {
     @DisplayName("Получаем информацию и выводим в консоль названия промо-акций")
     void getInformationAboutPromo() {
         step("Получение информации о промо", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .when()
                             .get("https://mcdonalds.ru/api/promos/0000073738")
                             .then()
                             .statusCode(200)
+                            .body("items.code", hasSize(9))
+                            .body("items.code", hasItems("alpine-delicious", "mcchicken-premier-gift", "glass-gift-for-lunch",
+                                    "mcdonalds-mastercard-cashback", "profitable-couples", "coffee-mccafe", "mchappy-day",
+                                    "happy-meal-jurassic-world", "tell-cheese"))
                             .extract().response();
-            promoName = responce.path("items.name");
+            promoName = response.path("items.name");
             for (int i = 0; i < promoName.size(); i++) {
                 System.out.println("Название: " + promoName.get(i) + " ");
             }
@@ -245,15 +250,17 @@ public class ApiTests {
     @DisplayName("Получаем информацию о бургерах и их цене")
     void getInformationAboutSandwiches() {
         step("Получение информации о бургерах", () -> {
-            Response responce =
+            Response response =
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .when()
                             .get("https://mcdonalds.ru/api/menu/category/sandwiches")
                             .then()
                             .statusCode(200)
+                            .body("products.id", hasSize(23))
+                            .body("category.alias", is("sandwiches"))
                             .extract().response();
-            JsonPath jsonPath = new JsonPath(responce.asString());
+            JsonPath jsonPath = new JsonPath(response.asString());
             int productsSize = jsonPath.getInt("products.size()");
 
             for (int productId = 0; productId < productsSize; productId++) {
