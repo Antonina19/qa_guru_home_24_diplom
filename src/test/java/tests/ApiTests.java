@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
@@ -32,24 +34,20 @@ public class ApiTests {
     ArrayList<String> promoName;
     Map<String, String> authorizationCookie;
 
-
     @Test
     @Story("Отображение товара в корзине")
     @Tags({@Tag("api"), @Tag("regress")})
     @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверяем, что добавленный товар отображается в корзине")
     void addProductInBasket() {
-        step("Определяем адресс и получаем куки", () -> {
+        Map<String, Object> map = getJson();
+        Map<String, Object> product = getJsonProduct(910, 1);
+
+        step("Определяем адрес и получаем куки", () -> {
             authorizationCookie =
                     given()
                             .contentType("application/json;charset=UTF-8")
-                            .body("{\"lat\":55.774487,\"long\":37.682377,\"components\":" +
-                                    "[{\"kind\":\"country\",\"name\":\"Россия\"}," +
-                                    "{\"kind\":\"province\",\"name\":\"Центральный федеральный округ\"}," +
-                                    "{\"kind\":\"province\",\"name\":\"Москва\"}," +
-                                    "{\"kind\":\"locality\",\"name\":\"Москва\"}," +
-                                    "{\"kind\":\"street\",\"name\":\"Бакунинская улица\"}," +
-                                    "{\"kind\":\"house\",\"name\":\"15\"}]}")
+                            .body(map)
                             .when()
                             .put("https://mcdonalds.ru/api/address")
                             .then()
@@ -62,7 +60,7 @@ public class ApiTests {
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
-                            .body("{\"offerId\":910,\"quantity\":1,\"ingredientGroups\":[]}")
+                            .body(product)
                             .when()
                             .put("https://mcdonalds.ru/api/basket/add")
                             .then()
@@ -93,17 +91,16 @@ public class ApiTests {
     @JiraIssues({@JiraIssue("HOMEWORK-256")})
     @DisplayName("Проверяем, что добавленный товар удаляется из корзины")
     void deleteAllProductFromBasket() {
+        Map<String, Object> map = getJson();
+        Map<String, Object> product1 = getJsonProduct(998, 1);
+        Map<String, Object> product2 = getJsonProduct(1001, 2);
+        Map<String, Object> product3 = getJsonProduct(6626, 5);
+
         step("Определяем адрес и получаем куки", () -> {
             authorizationCookie =
                     given()
                             .contentType("application/json;charset=UTF-8")
-                            .body("{\"lat\":55.774487,\"long\":37.682377,\"components\":" +
-                                    "[{\"kind\":\"country\",\"name\":\"Россия\"}," +
-                                    "{\"kind\":\"province\",\"name\":\"Центральный федеральный округ\"}," +
-                                    "{\"kind\":\"province\",\"name\":\"Москва\"}," +
-                                    "{\"kind\":\"locality\",\"name\":\"Москва\"}," +
-                                    "{\"kind\":\"street\",\"name\":\"Бакунинская улица\"}," +
-                                    "{\"kind\":\"house\",\"name\":\"15\"}]}")
+                            .body(map)
                             .when()
                             .put("https://mcdonalds.ru/api/address")
                             .then()
@@ -116,7 +113,7 @@ public class ApiTests {
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
-                            .body("{\"offerId\":998,\"quantity\":1,\"ingredientGroups\":[]}")
+                            .body(product1)
                             .when()
                             .put("https://mcdonalds.ru/api/basket/add")
                             .then()
@@ -130,7 +127,7 @@ public class ApiTests {
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
-                            .body("{\"offerId\":1001,\"quantity\":2,\"ingredientGroups\":[]}")
+                            .body(product2)
                             .when()
                             .put("https://mcdonalds.ru/api/basket/add")
                             .then()
@@ -144,7 +141,7 @@ public class ApiTests {
                     given()
                             .contentType("application/json; charset=UTF-8")
                             .cookies(authorizationCookie)
-                            .body("{\"offerId\":6626,\"quantity\":5,\"ingredientGroups\":[]}")
+                            .body(product3)
                             .when()
                             .put("https://mcdonalds.ru/api/basket/add")
                             .then()
@@ -277,6 +274,52 @@ public class ApiTests {
                 }
             }
         });
+    }
+
+    private Map<String, Object> getJson() {
+        LinkedList<HashMap<String, String>> list = new LinkedList<>();
+        list.add(new HashMap<String, String>() {{
+            put("kind", "country");
+            put("name", "Россия");
+        }});
+        list.add(new HashMap<String, String>() {{
+            put("kind", "province");
+            put("name", "Центральный федеральный округ");
+        }});
+        list.add(new HashMap<String, String>() {{
+            put("kind", "province");
+            put("name", "Москва");
+        }});
+        list.add(new HashMap<String, String>() {{
+            put("kind", "locality");
+            put("name", "Москва");
+        }});
+        list.add(new HashMap<String, String>() {{
+            put("kind", "street");
+            put("name", "Бакунинская улица");
+        }});
+        list.add(new HashMap<String, String>() {{
+            put("kind", "house");
+            put("name", "15");
+        }});
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("lat", 55.774487);
+        map.put("long", 37.682377);
+        map.put("components", list);
+
+        return map;
+    }
+
+    private Map<String, Object> getJsonProduct(int id, int count) {
+        LinkedList<HashMap<String, String>> list = new LinkedList<>();
+
+        Map<String, Object> product = new HashMap<>();
+        product.put("offerId", id);
+        product.put("quantity", count);
+        product.put("ingredientGroups", list);
+
+        return product;
     }
 }
 
